@@ -1,0 +1,6 @@
+MIDlet-Name: FIRST 2012 Command Based Robot
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: FIRST
+MIDlet-1: Robot_3573, , edu.wpi.first.wpilibj.templates.Robot_3573
+MicroEdition-Profile: IMP-1.0
+MicroEdition-Configuration: CLDC-1.1
