@@ -50,5 +50,9 @@ public class BallConveyor extends Subsystem {
     
     public void disengageConveyor() {
         conveyorTilt.set(Relay.Value.kReverse);
-    }    
+    }
+    
+    public boolean getState() {
+        return (ballConveyor.get() != 0);
+    }
 }

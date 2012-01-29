@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.ToggleBridgingArm;
+import edu.wpi.first.wpilibj.templates.commands.ToggleConveyor;
+import edu.wpi.first.wpilibj.templates.commands.TurnOffGun;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,9 +48,21 @@ public class OI {
     Joystick driverStick;
     Joystick gunnerStick;
     
+    JoystickButton conveyorToggle;
+    JoystickButton gunToggle;
+    JoystickButton bridgingArmToggle;
+    
     public OI() {
         driverStick = new Joystick(RobotMap.driverStick);
         gunnerStick = new Joystick(RobotMap.gunnerStick);
+        
+        bridgingArmToggle = new JoystickButton(getDriverStick(), RobotMap.bridgingArmToggleNumber);
+        bridgingArmToggle.whenPressed(new ToggleBridgingArm());
+        
+        conveyorToggle = new JoystickButton(getGunnerStick(), RobotMap.conveyorToggleNumber);
+        conveyorToggle.whenPressed(new ToggleConveyor());
+        gunToggle = new JoystickButton(getGunnerStick(), RobotMap.gunToggleNumber);
+        gunToggle.whileHeld(new TurnOffGun());
     }
     
 //    Button armDownButton = new JoystickButton(stick, 4);

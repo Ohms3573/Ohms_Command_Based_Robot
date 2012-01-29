@@ -56,4 +56,11 @@ public class RobotMap {
     public static final double conveyorTiltTime = 0.3;
     public static final double bridgingArmTime = 0.3;
     
+    // Driver Buttons
+    public static final int bridgingArmToggleNumber = 5;
+    
+    // Gunner Buttons
+    public static final int conveyorToggleNumber = 7;
+    public static final int gunToggleNumber = 6;
+    
 }

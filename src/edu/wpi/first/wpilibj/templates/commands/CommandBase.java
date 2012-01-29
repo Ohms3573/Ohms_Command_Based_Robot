@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.BallConveyor;
+import edu.wpi.first.wpilibj.templates.subsystems.BridgingArm;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.GunFlywheels;
 import edu.wpi.first.wpilibj.templates.subsystems.Turret;
@@ -22,6 +23,7 @@ public abstract class CommandBase extends Command {
     public static BallConveyor ballConveyor = new BallConveyor();
     public static GunFlywheels gunFlywheels = new GunFlywheels();
     public static Turret turret = new Turret();
+    public static BridgingArm bridgingArm = new BridgingArm();
     
 
     public static void init() {

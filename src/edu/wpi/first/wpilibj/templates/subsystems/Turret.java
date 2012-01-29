@@ -1,5 +1,6 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
@@ -25,5 +26,15 @@ public class Turret extends Subsystem {
     
     public void turretTurnRight() {
         turretTurn.set(Relay.Value.kReverse);
+    }
+    
+    public void driveTurret(Joystick stick) {
+        double x = stick.getX();
+        if(x < 0) {
+            turretTurnLeft();
+        }
+        else if(x > 0) {
+            turretTurnRight();
+        }
     }
 }
