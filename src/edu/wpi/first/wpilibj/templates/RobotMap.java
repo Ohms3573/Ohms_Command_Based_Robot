@@ -41,7 +41,19 @@ public class RobotMap {
     
     // Relays
     public static final int turretTurnPort = 1;
-    public static final int turretElevationPort = 2;
+    // public static final int turretElevationPort = 2;
     public static final int conveyorTiltPort = 3;
-    public static final int BridgingArmPort = 4;
+    public static final int bridgingArmPort = 4;
+    
+    // Sensors
+    public static final int conveyorTiltSwitchPort = 6;
+    
+    // Speeds
+    public static final double gunFlywheelSpeed = 1.0;
+    public static final double ballConveyorSpeed = 1.0;
+    
+    // Times
+    public static final double conveyorTiltTime = 0.3;
+    public static final double bridgingArmTime = 0.3;
+    
 }
