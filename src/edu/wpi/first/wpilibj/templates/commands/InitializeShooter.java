@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- * @author Kenny
- */
 public class InitializeShooter extends CommandGroup {
     
     public InitializeShooter() {
@@ -23,6 +15,8 @@ public class InitializeShooter extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+        addParallel(new TurnOnGun());
+        addParallel(new TurnOnConveyor());
 
         // A command group will require all of the subsystems that each member
         // would require.
