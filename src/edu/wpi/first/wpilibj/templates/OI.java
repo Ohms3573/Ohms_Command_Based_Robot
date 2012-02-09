@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.ToggleBridgingArm;
 import edu.wpi.first.wpilibj.templates.commands.ToggleConveyor;
+import edu.wpi.first.wpilibj.templates.commands.ToggleEngageConveyor;
 import edu.wpi.first.wpilibj.templates.commands.TurnOffGun;
 
 /**
@@ -49,8 +50,10 @@ public class OI {
     Joystick gunnerStick;
     
     JoystickButton conveyorToggle;
+    JoystickButton conveyorEngage;
     JoystickButton gunToggle;
     JoystickButton bridgingArmToggle;
+    private final JoystickButton autoAlign;
     
     public OI() {
         driverStick = new Joystick(RobotMap.driverStick);
@@ -61,8 +64,14 @@ public class OI {
         
         conveyorToggle = new JoystickButton(getGunnerStick(), RobotMap.conveyorToggleNumber);
         conveyorToggle.whenPressed(new ToggleConveyor());
+        
+        conveyorEngage = new JoystickButton(getGunnerStick(),RobotMap.conveyorEngageNumber);
+        conveyorEngage.whenPressed(new ToggleEngageConveyor());
+        
         gunToggle = new JoystickButton(getGunnerStick(), RobotMap.gunToggleNumber);
         gunToggle.whileHeld(new TurnOffGun());
+        
+        autoAlign = new JoystickButton(getGunnerStick(), RobotMap.autoAlignNumber);
     }
     
 //    Button armDownButton = new JoystickButton(stick, 4);

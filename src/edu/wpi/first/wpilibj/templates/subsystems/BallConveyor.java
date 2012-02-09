@@ -14,11 +14,13 @@ public class BallConveyor extends Subsystem {
     private Jaguar ballConveyor;
     private Relay conveyorTilt;
     private DigitalInput conveyorEngagedSwitch;
+    private DigitalInput conveyorDisengagedSwitch;
     
     public BallConveyor() {
         ballConveyor = new Jaguar(RobotMap.ballConveyorPort);
         conveyorTilt = new Relay(RobotMap.conveyorTiltPort);
-        conveyorEngagedSwitch = new DigitalInput(RobotMap.conveyorTiltSwitchPort);
+        conveyorEngagedSwitch = new DigitalInput(RobotMap.conveyorEngagedSwitchPort);
+        conveyorDisengagedSwitch = new DigitalInput(RobotMap.conveyorDisengagedSwitchPort);
     }
 
     public void initDefaultCommand() {
@@ -39,6 +41,10 @@ public class BallConveyor extends Subsystem {
         return !conveyorEngagedSwitch.get(); // Limit switches are false when closed
     }
     
+    public boolean isConveyorDisengaged() {
+        return !conveyorDisengagedSwitch.get();
+    }
+    
     public void engageConveyor() {
         if(isConveyorEngaged()) {
             conveyorTilt.set(Relay.Value.kOff);
@@ -49,10 +55,16 @@ public class BallConveyor extends Subsystem {
     }
     
     public void disengageConveyor() {
-        conveyorTilt.set(Relay.Value.kReverse);
+        if(isConveyorDisengaged()) {
+            conveyorTilt.set(Relay.Value.kOff);
+        }
+        else {
+            conveyorTilt.set(Relay.Value.kReverse);
+        }
     }
     
     public boolean getState() {
         return (ballConveyor.get() != 0);
     }
+    
 }
