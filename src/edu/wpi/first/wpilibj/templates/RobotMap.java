@@ -46,7 +46,8 @@ public class RobotMap {
     public static final int bridgingArmPort = 4;
     
     // Sensors
-    public static final int conveyorTiltSwitchPort = 6;
+    public static final int conveyorEngagedSwitchPort = 6;
+    public static final int conveyorDisengagedSwitchPort = 7;
     
     // Speeds
     public static final double gunFlywheelSpeed = 1.0;
@@ -56,11 +57,16 @@ public class RobotMap {
     public static final double conveyorTiltTime = 0.3;
     public static final double bridgingArmTime = 0.3;
     
+    // Constants
+    public static final double cameraConstant = 5;
+    
     // Driver Buttons
     public static final int bridgingArmToggleNumber = 5;
     
     // Gunner Buttons
     public static final int conveyorToggleNumber = 7;
     public static final int gunToggleNumber = 6;
+    public static final int conveyorEngageNumber = 8; //CHANGE ME!
+    public static final int autoAlignNumber = 5; //CHANGE ME!
     
 }
