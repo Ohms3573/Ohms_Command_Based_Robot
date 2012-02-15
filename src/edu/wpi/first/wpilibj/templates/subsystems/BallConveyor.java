@@ -13,46 +13,60 @@ public class BallConveyor extends Subsystem {
     
     private Jaguar ballConveyor;
     private Relay conveyorTilt;
-    private DigitalInput conveyorEngagedSwitch;
+    private DigitalInput conveyorSwitch;
+    private Relay.Value direction;
+    public boolean past;
     
     public BallConveyor() {
         ballConveyor = new Jaguar(RobotMap.ballConveyorPort);
         conveyorTilt = new Relay(RobotMap.conveyorTiltPort);
-        conveyorEngagedSwitch = new DigitalInput(RobotMap.conveyorTiltSwitchPort);
+        conveyorSwitch = new DigitalInput(RobotMap.conveyorSwitchPort);
+        direction = Relay.Value.kForward;
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new TurnOnConveyor());
     }
-    
-    public void ballConveyor(boolean onOff) {
-        if(onOff) {
-            ballConveyor.set(RobotMap.ballConveyorSpeed);
+        
+    public void toggleEngageConveyor(){
+        if(!conveyorSwitch.get() && !past){
+            conveyorTilt.set(direction);
         }
-        else {
-            ballConveyor.set(0.0);
+        else if(conveyorSwitch.get() && !past){
+            past = !past;
         }
-    }
-    
-    public boolean isConveyorEngaged() {
-        return !conveyorEngagedSwitch.get(); // Limit switches are false when closed
-    }
-    
-    public void engageConveyor() {
-        if(isConveyorEngaged()) {
+        else if(!conveyorSwitch.get() && past){
+            //do nothing
+        }
+        else if(conveyorSwitch.get() && past){
             conveyorTilt.set(Relay.Value.kOff);
         }
-        else {
-            conveyorTilt.set(Relay.Value.kForward);
-        }
+    }
+    public void engageConveyor(){
+        conveyorTilt.set(direction);
     }
     
-    public void disengageConveyor() {
-        conveyorTilt.set(Relay.Value.kReverse);
+    public boolean checkIsFinished(){
+        return conveyorSwitch.get() && past;
     }
     
+    public void turnOnBallConveyor(){
+        ballConveyor.set(RobotMap.ballConveyorSpeed);
+    }
+    public void turnOffBallConveyor(){
+        ballConveyor.set(0);
+    }
+
     public boolean getState() {
-        return (ballConveyor.get() != 0);
+        return ballConveyor.get() == 0;
     }
+
+    public void reverseEngagerDirection() {
+        if(direction == Relay.Value.kForward){
+            direction = Relay.Value.kReverse;
+        }
+        else direction = Relay.Value.kForward;
+    }
+    
 }

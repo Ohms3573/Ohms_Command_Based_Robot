@@ -2,6 +2,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 public class BridgingArm extends Subsystem {
@@ -19,16 +20,19 @@ public class BridgingArm extends Subsystem {
     public void initDefaultCommand() {} // Do nothing
     
     public void lowerArm() {
+        SmartDashboard.putString("BridgingArm","Lowered");
         bridgingArm.set(Relay.Value.kForward);
         state = true;
     }
     
     public void raiseArm() {
+        SmartDashboard.putString("BridgingArm","Raised");
         bridgingArm.set(Relay.Value.kReverse);
         state = false;
     }
     
     public void stopArm() {
+        SmartDashboard.putString("BridgingArm","Off");
         bridgingArm.set(Relay.Value.kOff);
     }
     

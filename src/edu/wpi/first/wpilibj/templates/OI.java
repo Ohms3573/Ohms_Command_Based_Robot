@@ -2,11 +2,10 @@
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.ToggleBridgingArm;
 import edu.wpi.first.wpilibj.templates.commands.ToggleConveyor;
+import edu.wpi.first.wpilibj.templates.commands.ToggleEngageConveyor;
 import edu.wpi.first.wpilibj.templates.commands.TurnOffGun;
 
 /**
@@ -49,20 +48,28 @@ public class OI {
     Joystick gunnerStick;
     
     JoystickButton conveyorToggle;
+    JoystickButton conveyorEngage;
     JoystickButton gunToggle;
     JoystickButton bridgingArmToggle;
+    JoystickButton autoAlign;
     
     public OI() {
-        driverStick = new Joystick(RobotMap.driverStick);
-        gunnerStick = new Joystick(RobotMap.gunnerStick);
+        driverStick = new Joystick(RobotMap.driverStickPort);
+        gunnerStick = new Joystick(RobotMap.gunnerStickPort);
         
-        bridgingArmToggle = new JoystickButton(getDriverStick(), RobotMap.bridgingArmToggleNumber);
+        bridgingArmToggle = new JoystickButton(driverStick, RobotMap.bridgingArmToggleNumber);
         bridgingArmToggle.whenPressed(new ToggleBridgingArm());
         
-        conveyorToggle = new JoystickButton(getGunnerStick(), RobotMap.conveyorToggleNumber);
+        conveyorToggle = new JoystickButton(gunnerStick, RobotMap.conveyorToggleNumber);
         conveyorToggle.whenPressed(new ToggleConveyor());
-        gunToggle = new JoystickButton(getGunnerStick(), RobotMap.gunToggleNumber);
+        
+        conveyorEngage = new JoystickButton(gunnerStick,RobotMap.conveyorEngageNumber);
+        conveyorEngage.whenPressed(new ToggleEngageConveyor());
+        
+        gunToggle = new JoystickButton(gunnerStick, RobotMap.gunToggleNumber);
         gunToggle.whileHeld(new TurnOffGun());
+        
+        autoAlign = new JoystickButton(gunnerStick, RobotMap.autoAlignNumber);
     }
     
 //    Button armDownButton = new JoystickButton(stick, 4);
