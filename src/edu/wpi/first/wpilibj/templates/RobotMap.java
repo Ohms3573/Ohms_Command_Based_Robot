@@ -23,10 +23,11 @@ public class RobotMap {
     // |  _/ _ \ '_|  _(_-< //
     // |_| \___/_|  \__/__/ //
     //                      //
-    //////////////////////////   
+    //////////////////////////
+    
     // Joysticks
-    public static final int driverStick = 1;
-    public static final int gunnerStick = 2;
+    public static final int driverStickPort = 1;
+    public static final int gunnerStickPort = 2;
     
     // Jaguars
     public static final int fLeftMotorPort = 1;
@@ -37,7 +38,7 @@ public class RobotMap {
     
     // Victors
     public static final int gunLeftPort = 7;
-    public static final int gunRightPort = 7;
+    public static final int gunRightPort = 8;
     
     // Relays
     public static final int turretTurnPort = 1;
@@ -46,7 +47,7 @@ public class RobotMap {
     public static final int bridgingArmPort = 4;
     
     // Sensors
-    public static final int conveyorTiltSwitchPort = 6;
+    public static final int conveyorSwitchPort = 6;
     
     // Speeds
     public static final double gunFlywheelSpeed = 1.0;
@@ -56,11 +57,19 @@ public class RobotMap {
     public static final double conveyorTiltTime = 0.3;
     public static final double bridgingArmTime = 0.3;
     
+    // Constants
+    public static final double cameraConstant = 5;
+    
     // Driver Buttons
     public static final int bridgingArmToggleNumber = 5;
     
     // Gunner Buttons
     public static final int conveyorToggleNumber = 7;
     public static final int gunToggleNumber = 6;
+    public static final int conveyorEngageNumber = 1; 
+    public static final int autoAlignNumber = 3; 
+    
+    // Camera
+    public static final boolean cameraIsEnabled = false;
     
 }

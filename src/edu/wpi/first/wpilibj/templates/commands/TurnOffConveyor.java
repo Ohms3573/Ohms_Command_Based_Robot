@@ -1,8 +1,6 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 public class TurnOffConveyor extends CommandBase {
-    private final static boolean ON = true;
-    private final static boolean OFF = false;
     
     public TurnOffConveyor() {
         // Use requires() here to declare subsystem dependencies
@@ -13,7 +11,7 @@ public class TurnOffConveyor extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        ballConveyor.ballConveyor(OFF);
+        ballConveyor.turnOffBallConveyor();
     }
 
     // Called repeatedly when this Command is scheduled to run
