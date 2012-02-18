@@ -9,8 +9,8 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.InitializeShooter;
 
@@ -23,12 +23,13 @@ import edu.wpi.first.wpilibj.templates.commands.InitializeShooter;
  */
 public class Robot_3573 extends IterativeRobot {
 
-    Command autonomousCommand;
+    //Command autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    
     public void robotInit() {
         // instantiate the command used for the autonomous period
         // autonomousCommand = new ExampleCommand();
@@ -39,29 +40,48 @@ public class Robot_3573 extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        SmartDashboard.putString("Mode","Autonomous");
+        System.out.println("Autonomous Enabled");
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        //autonomousCommand.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        SmartDashboard.putData("ScheculerData",Scheduler.getInstance());
         Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
+        System.out.println("Teleop Enabled");
+        SmartDashboard.putString("Mode", "Teleop");
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        //autonomousCommand.cancel();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        SmartDashboard.putData("SchedulerData",Scheduler.getInstance());
         Scheduler.getInstance().run();
     }
+    
+    public void teleopContinuous(){}
+    
+    public void disabledInit(){
+        SmartDashboard.putString("Mode", "Disabled");
+        System.out.println("Disabled Mode");
+    }
+    
+    public void disabledPeriodic(){
+        SmartDashboard.putData("ShedularData",Scheduler.getInstance());
+    }
+    public void disabledContinuous(){}
+    
 }
